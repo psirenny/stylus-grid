@@ -8,7 +8,7 @@ stylus-grid-length(length, total-length = $default-total-length, width = $defaul
 
 row(gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
   display block
-  margin-left - stylus-grid-length(gutter-length, total-length, width)
+  margin-left -1 * stylus-grid-length(gutter-length, total-length, width)
   min-width stylus-grid-length(gutter-length, total-length, width)
 
 column(column-length = $default-column-length, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
