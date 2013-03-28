@@ -1,3 +1,5 @@
+@import 'nib'
+
 $default-column-length ?= 9
 $default-gutter-length ?= 1
 $default-row-width ?= 100%
@@ -7,6 +9,7 @@ stylus-grid-length(length, total-length = $default-total-length, width = $defaul
   return unit(length / total-length * unit(width, ""), unit(width))
 
 row(gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
+  clearfix()
   display block
   margin-left -1 * stylus-grid-length(gutter-length, total-length, width)
   min-width stylus-grid-length(gutter-length, total-length, width)
