@@ -1,6 +1,5 @@
 @import 'nib'
 
-$default-column-length ?= 9
 $default-gutter-length ?= 1
 $default-row-width ?= 100%
 $default-total-length ?= 120
@@ -8,14 +7,18 @@ $default-total-length ?= 120
 stylus-grid-length(length, total-length = $default-total-length, width = $default-row-width)
   return unit(length / total-length * unit(width, ""), unit(width))
 
+column(column-length, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
+  display block
+  float left
+  margin-left stylus-grid-length(gutter-length, total-length, width)
+  width stylus-grid-length(column-length, total-length, width)
+
+offset(offset-length, direction = left, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
+  margin-left stylus-grid-length(offset-length + gutter-length, total-length, width) unless direction == right
+  margin-right stylus-grid-length(offset-length) unless direction == left
+
 row(gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
   clearfix()
   display block
   margin-left -1 * stylus-grid-length(gutter-length, total-length, width)
   min-width stylus-grid-length(gutter-length, total-length, width)
-
-column(column-length = $default-column-length, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
-  display block
-  float left
-  margin-left stylus-grid-length(gutter-length, total-length, width)
-  width stylus-grid-length(column-length, total-length, width)
