@@ -1,21 +1,26 @@
 @import 'nib'
 
+$default-column-length ?= 9
 $default-gutter-length ?= 1
 $default-row-width ?= 100%
-$default-total-length ?= 120
+$default-total-column-count ?= 12
+$default-total-length ?= $default-total-column-count * ($default-column-length + $default-gutter-length)
 
 stylus-grid-length(length, total-length = $default-total-length, width = $default-row-width)
   return unit(length / total-length * unit(width, ""), unit(width))
 
-column(column-length, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
+cell(count, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
   display block
   float left
   margin-left stylus-grid-length(gutter-length, total-length, width)
-  width stylus-grid-length(column-length, total-length, width)
+  width stylus-grid-length(count, total-length, width)
 
-offset(offset-length, direction = left, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
-  margin-left stylus-grid-length(offset-length + gutter-length, total-length, width) unless direction == right
-  margin-right stylus-grid-length(offset-length) unless direction == left
+column(count, column-length = $default-column-length, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
+  cell(count * (column-length + gutter-length) - gutter-length, gutter-length, total-length, width)
+
+offset(count, column-length = $default-column-length, direction = left, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
+  margin-left stylus-grid-length(count * (column-length + gutter-length) + gutter-length, total-length, width) unless direction == right
+  margin-right stylus-grid-length(count * (column-length + gutter-length), total-length, width) unless direction == left
 
 row(gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
   clearfix()
