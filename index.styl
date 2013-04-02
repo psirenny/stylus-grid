@@ -18,7 +18,7 @@ cell(count, gutter-length = $default-gutter-length, total-length = $default-tota
 column(count, column-length = $default-column-length, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
   cell(count * (column-length + gutter-length) - gutter-length, gutter-length, total-length, width)
 
-offset(count, column-length = $default-column-length, direction = left, gutter-length = $default-gutter-length, total-length = $default-total-length, width = $default-row-width)
+offset(count, column-length = $default-column-length, gutter-length = $default-gutter-length, direction = left, total-length = $default-total-length, width = $default-row-width)
   margin-left stylus-grid-length(count * (column-length + gutter-length) + gutter-length, total-length, width) unless direction == right
   margin-right stylus-grid-length(count * (column-length + gutter-length), total-length, width) unless direction == left
 
